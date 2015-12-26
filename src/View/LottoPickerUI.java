@@ -8,16 +8,12 @@ package View;
 import Controller.LottoCalendar;
 import Controller.LottoMatriz;
 import Model.LottoTicket;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author jlopez
+ * @author Acekuroko
  */
 public class LottoPickerUI extends javax.swing.JFrame {
 
@@ -26,6 +22,7 @@ public class LottoPickerUI extends javax.swing.JFrame {
      * Creates new form LottoPickerUI
      */
     public LottoPickerUI() {
+        super("Lotto Picker");
         initComponents();
     }
 
@@ -67,7 +64,7 @@ public class LottoPickerUI extends javax.swing.JFrame {
         );
         jPLottoMatrizLayout.setVerticalGroup(
             jPLottoMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+            .addComponent(jLLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,14 +88,15 @@ public class LottoPickerUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel1))
-                    .addComponent(jDCFechaSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jDCFechaSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBGenerate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jBGenerate))
         );
 
         pack();
@@ -119,7 +117,7 @@ public class LottoPickerUI extends javax.swing.JFrame {
         jLLottoMatriz.validate();
         
         // Delete from here
-        
+        /*
         System.out.println( lottoMatriz.toString());
         
         System.out.println(date.getTime() + " - " + Calendar.getInstance().getTimeInMillis()
@@ -131,7 +129,7 @@ public class LottoPickerUI extends javax.swing.JFrame {
             }
         System.out.println(date.getTime() + " - " + Calendar.getInstance().getTimeInMillis()
         + " - " +lottoCal.getNuevaFechaSorteo());
-        
+        */
         // To here
     }//GEN-LAST:event_jBGenerateActionPerformed
 

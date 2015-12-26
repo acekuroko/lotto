@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author jlopez
+ * @author Acekuroko
  */
 public class LottoMatriz {
     private List<LottoTicket> LottoMatriz = new ArrayList<>();

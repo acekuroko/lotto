@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jlopez
+ * @author Acekuroko
  */
 public class LottoTicket {
 
@@ -37,7 +37,7 @@ public class LottoTicket {
                 Logger.getLogger(LottoTicket.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            System.out.println(cal.getNuevaFechaSorteo());// delete
+            //System.out.println(cal.getNuevaFechaSorteo()); delete
             newNumb = RandomGenerator.number(cal.getNuevaFechaSorteo());
             if (i == 0) {
                 this.lotto[i] = newNumb;

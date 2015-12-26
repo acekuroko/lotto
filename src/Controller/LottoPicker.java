@@ -9,7 +9,7 @@ import View.LottoPickerUI;
 
 /**
  *
- * @author jlopez
+ * @author Acekuroko
  */
 public class LottoPicker {
 
@@ -21,6 +21,7 @@ public class LottoPicker {
         
        LottoPickerUI lottoUI = new LottoPickerUI();
        lottoUI.pack();
+       lottoUI.setLocationRelativeTo(null);
        lottoUI.setVisible(true);
     }
     
