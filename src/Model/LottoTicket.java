@@ -7,6 +7,8 @@ package Model;
 
 import Controller.LottoCalendar;
 import Controller.RandomGenerator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,6 +19,9 @@ public class LottoTicket {
     private int[] lotto = new int[5];
 
     public LottoTicket() {
+        for(int i = 0; i < 5; i++){
+            this.lotto[i] = 0;
+        }
     }
 
     public int[] getLotto() {
@@ -26,26 +31,41 @@ public class LottoTicket {
     public void setLotto(LottoCalendar cal) {
         int newNumb = 0;
         for (int i = 0; i < 5;) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LottoTicket.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            System.out.println(cal.getNuevaFechaSorteo());// delete
             newNumb = RandomGenerator.number(cal.getNuevaFechaSorteo());
             if (i == 0) {
                 this.lotto[i] = newNumb;
                 i++;
             } else {
-                for (int j = 0; j < i; j++){
-                    if(areDiff(newNumb, this.lotto[i])){
-                        System.out.println("Diferenetes");
-                    } else {
-                        System.out.println("Iguales");
-                        break;
-                    }
-                    
+                if(!itContains(newNumb)){
+                    this.lotto[i] = newNumb;
+                    i++;
                 }
             }
         }
     }
     
-    private boolean areDiff (int primer, int segundo){
-        return (primer != segundo);
+    private boolean itContains (int nuevoNum){
+        boolean itContains = false;
+        for (int i = 0; i < 4; i++){
+            if(this.lotto[i] != 0){
+                if(this.lotto[i] == nuevoNum){
+                    itContains = true;
+                    break;
+                }
+            } else {
+                break;
+            }
+            
+        }
+        
+        return itContains;
     }
 
 }
