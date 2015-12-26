@@ -6,6 +6,7 @@
 package View;
 
 import Controller.LottoCalendar;
+import Controller.LottoMatriz;
 import Model.LottoTicket;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,54 +38,89 @@ public class LottoPickerUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jBGenerate = new javax.swing.JButton();
         jDCFechaSorteo = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jPLottoMatriz = new javax.swing.JPanel();
+        jLLottoMatriz = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBGenerate.setText("Generar");
+        jBGenerate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBGenerateActionPerformed(evt);
             }
         });
+
+        jLabel1.setLabelFor(jDCFechaSorteo);
+        jLabel1.setText("Fecha del siguiente sorteo:");
+
+        jPLottoMatriz.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.darkGray, java.awt.Color.gray));
+
+        javax.swing.GroupLayout jPLottoMatrizLayout = new javax.swing.GroupLayout(jPLottoMatriz);
+        jPLottoMatriz.setLayout(jPLottoMatrizLayout);
+        jPLottoMatrizLayout.setHorizontalGroup(
+            jPLottoMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPLottoMatrizLayout.setVerticalGroup(
+            jPLottoMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jDCFechaSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jDCFechaSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBGenerate)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jDCFechaSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addComponent(jDCFechaSorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPLottoMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBGenerate)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerateActionPerformed
         Date date = jDCFechaSorteo.getDate();
         lottoCal = new LottoCalendar(date, Calendar.getInstance().getTimeInMillis());
-        List<LottoTicket> LottoMatriz = new ArrayList<>();
+        
+        LottoMatriz lottoMatriz = new LottoMatriz();
         for(int i =0; i < 5; i++){
             LottoTicket lotto = new LottoTicket();
             lotto.setLotto(lottoCal);
-            LottoMatriz.add(lotto);    
+            lottoMatriz.addLotto(lotto);
         }
+        
+        jLLottoMatriz.setText(lottoMatriz.toString());
+        jLLottoMatriz.validate();
+        
+        // Delete from here
+        
+        System.out.println( lottoMatriz.toString());
         
         System.out.println(date.getTime() + " - " + Calendar.getInstance().getTimeInMillis()
         + " - " +lottoCal.getNuevaFechaSorteo());
@@ -95,7 +131,9 @@ public class LottoPickerUI extends javax.swing.JFrame {
             }
         System.out.println(date.getTime() + " - " + Calendar.getInstance().getTimeInMillis()
         + " - " +lottoCal.getNuevaFechaSorteo());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        // To here
+    }//GEN-LAST:event_jBGenerateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,7 +171,10 @@ public class LottoPickerUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBGenerate;
     private com.toedter.calendar.JDateChooser jDCFechaSorteo;
+    private javax.swing.JLabel jLLottoMatriz;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPLottoMatriz;
     // End of variables declaration//GEN-END:variables
 }
